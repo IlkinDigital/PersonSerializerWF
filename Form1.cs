@@ -18,6 +18,13 @@ namespace PersonSerializerWF
             CurrentProfileFilepath = "";
         }
 
+        private bool IsInputDataValid()
+        {
+            return name_textBox.Text != ""
+                && surname_textBox.Text != ""
+                && profile_pictureBox.BackgroundImage != profile_pictureBox.InitialImage;
+        }
+
         private void load_button_MouseClick(object sender, MouseEventArgs e)
         {
             OpenFileDialog ofd = new();
@@ -39,12 +46,15 @@ namespace PersonSerializerWF
 
         private void add_button_MouseClick(object sender, MouseEventArgs e)
         {
-            var person = new Backend.Person(name_textBox.Text, surname_textBox.Text, 
-                                            Convert.ToInt32(age_numericUpDown.Value), 
-                                            CurrentProfileFilepath);
+            if (IsInputDataValid())
+            {
+                var person = new Backend.Person(name_textBox.Text, surname_textBox.Text, 
+                                                Convert.ToInt32(age_numericUpDown.Value), 
+                                                CurrentProfileFilepath);
 
-            PersonHandler.Add(person);
-            Reset();
+                PersonHandler.Add(person);
+                Reset();
+            }
         }
     }
 }
