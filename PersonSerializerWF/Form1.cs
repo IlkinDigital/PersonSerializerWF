@@ -55,6 +55,10 @@ namespace PersonSerializerWF
                 PersonHandler.Add(person);
                 Reset();
             }
+            else
+            {
+                MessageBox.Show("Complete the missing fields.", "Missing Fields", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
